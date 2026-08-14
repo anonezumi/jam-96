@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://dkq4uxka87wmh"]
+
+[ext_resource type="Script" uid="uid://qfkfs1y0x2us" path="res://src/splash_screens.gd" id="1_7dgi7"]
+[ext_resource type="Texture2D" uid="uid://c3d788ueq6dti" path="res://assets/godot_wild_jam_logo.svg" id="2_rqvx7"]
+
+[node name="SplashScreens" type="Control" unique_id=1780292851]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_7dgi7")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1617330814]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 28.884
+anchor_bottom = 16.373
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.078431375, 0.13333334, 0.2509804, 1)
+
+[node name="Timer" type="Timer" parent="." unique_id=1600810466]
+wait_time = 5.0
+autostart = true
+
+[node name="GodotWildJamLogo" type="Sprite2D" parent="." unique_id=415298070]
+position = Vector2(960, 540)
+texture = ExtResource("2_rqvx7")
+
+[connection signal="gui_input" from="ColorRect" to="." method="_on_gui_input"]

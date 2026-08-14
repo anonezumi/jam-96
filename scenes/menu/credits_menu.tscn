@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://ddm0t20wh1el0"]
+
+[ext_resource type="FontFile" uid="uid://6svn6ncd2500" path="res://assets/font/Lato/Lato-Regular.ttf" id="1_tyec1"]
+[ext_resource type="FontFile" uid="uid://do7pnkbtkrqeu" path="res://assets/font/AtkinsonHyperlegibleNextVF-Variable.ttf" id="2_n00n6"]
+[ext_resource type="Script" uid="uid://b5s7mqwhtlev5" path="res://src/main_menu_button.gd" id="3_e66ri"]
+
+[sub_resource type="FontVariation" id="FontVariation_i8bpo"]
+base_font = ExtResource("1_tyec1")
+
+[sub_resource type="FontVariation" id="FontVariation_xvsq7"]
+base_font = ExtResource("2_n00n6")
+variation_opentype = {
+1769234796: 0,
+2003265652: 600
+}
+
+[node name="CreditsMenu" type="Control" unique_id=665822011]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=656545034]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 28.884
+anchor_bottom = 16.373
+offset_right = -53537.28
+offset_bottom = -16602.84
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.078431375, 0.13333334, 0.2509804, 1)
+
+[node name="Label" type="Label" parent="." unique_id=912111786]
+layout_mode = 0
+offset_left = 322.0
+offset_top = 341.0
+offset_right = 1636.0
+offset_bottom = 752.0
+theme_override_fonts/font = SubResource("FontVariation_i8bpo")
+theme_override_font_sizes/font_size = 60
+text = "This game was made by anonezumi and Detective Chiyo for Godot Wild Jam 96. It uses some code from the GWJ accessibility helper addon."
+autowrap_mode = 2
+
+[node name="Button" type="Button" parent="." unique_id=1651742045]
+layout_mode = 0
+offset_left = 73.0
+offset_top = 945.0
+offset_right = 457.0
+offset_bottom = 1020.0
+theme_override_fonts/font = SubResource("FontVariation_xvsq7")
+theme_override_font_sizes/font_size = 36
+text = "Back to Main Menu"
+script = ExtResource("3_e66ri")
+
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

@@ -1,0 +1,272 @@
+[gd_scene format=3 uid="uid://deh5sabrbl6fy"]
+
+[ext_resource type="FontFile" uid="uid://do7pnkbtkrqeu" path="res://assets/font/AtkinsonHyperlegibleNextVF-Variable.ttf" id="1_y7bi1"]
+[ext_resource type="Script" uid="uid://hjbly1wuyxvp" path="res://src/window_mode_select.gd" id="2_gtsiv"]
+[ext_resource type="PackedScene" uid="uid://cxch7x2j3wv3p" path="res://addons/gwj_accessibility_scripts/options/volume_slider.tscn" id="3_gtsiv"]
+[ext_resource type="PackedScene" uid="uid://ce2r6mevl3dp2" path="res://addons/gwj_accessibility_scripts/options/rebindable_action.tscn" id="4_nerre"]
+[ext_resource type="AudioStream" uid="uid://nb5bufmvmchf" path="res://assets/sfx/feedback_sound.wav" id="5_5j2x0"]
+[ext_resource type="Script" uid="uid://b5s7mqwhtlev5" path="res://src/main_menu_button.gd" id="5_sjm4j"]
+
+[sub_resource type="FontVariation" id="FontVariation_giyxd"]
+base_font = ExtResource("1_y7bi1")
+variation_opentype = {
+1769234796: 0,
+2003265652: 600
+}
+
+[sub_resource type="FontVariation" id="FontVariation_i8bpo"]
+base_font = ExtResource("1_y7bi1")
+variation_opentype = {
+1769234796: 0,
+2003265652: 400
+}
+
+[sub_resource type="FontVariation" id="FontVariation_oav3w"]
+base_font = ExtResource("1_y7bi1")
+variation_opentype = {
+1769234796: 0,
+2003265652: 600
+}
+
+[sub_resource type="FontVariation" id="FontVariation_amd84"]
+base_font = ExtResource("1_y7bi1")
+variation_opentype = {
+1769234796: 0,
+2003265652: 600
+}
+
+[sub_resource type="FontVariation" id="FontVariation_5j2x0"]
+base_font = ExtResource("1_y7bi1")
+variation_opentype = {
+1769234796: 0,
+2003265652: 400
+}
+
+[sub_resource type="FontVariation" id="FontVariation_3nvhq"]
+base_font = ExtResource("1_y7bi1")
+variation_opentype = {
+1769234796: 0,
+2003265652: 600
+}
+
+[node name="OptionsMenu" type="Control" unique_id=710374285]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1488181398]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.078431375, 0.13333334, 0.2509804, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=769652175]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+theme_override_constants/margin_left = 150
+theme_override_constants/margin_top = 120
+theme_override_constants/margin_right = 150
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=384580763]
+layout_mode = 2
+theme_override_constants/separation = 200
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=387128075]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 120
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer3" unique_id=943914411]
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_giyxd")
+theme_override_font_sizes/font_size = 40
+text = "Graphics"
+horizontal_alignment = 1
+
+[node name="Grid" type="GridContainer" parent="MarginContainer/HBoxContainer/VBoxContainer3" unique_id=1451660332]
+layout_mode = 2
+theme_override_constants/h_separation = 70
+columns = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer3/Grid" unique_id=1098772029]
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_i8bpo")
+theme_override_font_sizes/font_size = 24
+text = "Window Mode"
+
+[node name="WindowModeSelect" type="OptionButton" parent="MarginContainer/HBoxContainer/VBoxContainer3/Grid" unique_id=1633353187]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("2_gtsiv")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=495382225]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 120
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2" unique_id=1652734575]
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_oav3w")
+theme_override_font_sizes/font_size = 40
+text = "Sound"
+horizontal_alignment = 1
+
+[node name="Grid" type="GridContainer" parent="MarginContainer/HBoxContainer/VBoxContainer2" unique_id=2041444532]
+layout_mode = 2
+theme_override_constants/h_separation = 100
+theme_override_constants/v_separation = 40
+columns = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2/Grid" unique_id=788950704]
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_i8bpo")
+theme_override_font_sizes/font_size = 24
+text = "Master"
+
+[node name="VolumeSlider" parent="MarginContainer/HBoxContainer/VBoxContainer2/Grid" unique_id=2030138549 instance=ExtResource("3_gtsiv")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label2" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2/Grid" unique_id=1393208897]
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_i8bpo")
+theme_override_font_sizes/font_size = 24
+text = "Music"
+
+[node name="VolumeSlider2" parent="MarginContainer/HBoxContainer/VBoxContainer2/Grid" unique_id=984561262 instance=ExtResource("3_gtsiv")]
+layout_mode = 2
+size_flags_horizontal = 3
+bus_name = &"Music"
+
+[node name="Label3" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2/Grid" unique_id=1901645283]
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_i8bpo")
+theme_override_font_sizes/font_size = 24
+text = "SFX"
+
+[node name="VolumeSlider3" parent="MarginContainer/HBoxContainer/VBoxContainer2/Grid" unique_id=1009092123 instance=ExtResource("3_gtsiv")]
+layout_mode = 2
+size_flags_horizontal = 3
+bus_name = &"SFX"
+feedback_sound_path = NodePath("../../../../../SFXTestSound")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=606069248]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 120
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=304941449]
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_amd84")
+theme_override_font_sizes/font_size = 40
+text = "Controls"
+horizontal_alignment = 1
+
+[node name="Grid" type="GridContainer" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=882919372]
+layout_mode = 2
+theme_override_constants/h_separation = 150
+theme_override_constants/v_separation = 20
+columns = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/Grid" unique_id=95861475]
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_5j2x0")
+theme_override_font_sizes/font_size = 24
+text = "Move Up:"
+
+[node name="RebindableAction" parent="MarginContainer/HBoxContainer/VBoxContainer/Grid" unique_id=256401294 instance=ExtResource("4_nerre")]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Rebindable action buttons will remap a single input event to an action name.
+It is recommended to not overwrite the built-in \"ui_*\" actions in a production project."
+theme_override_fonts/font = SubResource("FontVariation_5j2x0")
+theme_override_font_sizes/font_size = 24
+keep_pressed_outside = true
+text = "Up"
+action = "move_up"
+
+[node name="Label2" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/Grid" unique_id=699931121]
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_5j2x0")
+theme_override_font_sizes/font_size = 24
+text = "Move Down:"
+
+[node name="RebindableAction2" parent="MarginContainer/HBoxContainer/VBoxContainer/Grid" unique_id=898359948 instance=ExtResource("4_nerre")]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Rebindable action buttons will remap a single input event to an action name.
+It is recommended to not overwrite the built-in \"ui_*\" actions in a production project."
+theme_override_fonts/font = SubResource("FontVariation_5j2x0")
+theme_override_font_sizes/font_size = 24
+text = "Down"
+action = "move_down"
+
+[node name="Label3" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/Grid" unique_id=1976211415]
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_5j2x0")
+theme_override_font_sizes/font_size = 24
+text = "Move Left:"
+
+[node name="RebindableAction3" parent="MarginContainer/HBoxContainer/VBoxContainer/Grid" unique_id=661463233 instance=ExtResource("4_nerre")]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Rebindable action buttons will remap a single input event to an action name.
+It is recommended to not overwrite the built-in \"ui_*\" actions in a production project."
+theme_override_fonts/font = SubResource("FontVariation_5j2x0")
+theme_override_font_sizes/font_size = 24
+text = "Left"
+action = "move_left"
+
+[node name="Label4" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/Grid" unique_id=1290432147]
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_5j2x0")
+theme_override_font_sizes/font_size = 24
+text = "Move Right:"
+
+[node name="RebindableAction4" parent="MarginContainer/HBoxContainer/VBoxContainer/Grid" unique_id=1273784202 instance=ExtResource("4_nerre")]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Rebindable action buttons will remap a single input event to an action name.
+It is recommended to not overwrite the built-in \"ui_*\" actions in a production project."
+theme_override_fonts/font = SubResource("FontVariation_5j2x0")
+theme_override_font_sizes/font_size = 24
+text = "Right"
+action = "move_right"
+
+[node name="Label5" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/Grid" unique_id=482506387]
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_5j2x0")
+theme_override_font_sizes/font_size = 24
+text = "Interact:"
+
+[node name="RebindableAction5" parent="MarginContainer/HBoxContainer/VBoxContainer/Grid" unique_id=175521989 instance=ExtResource("4_nerre")]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Rebindable action buttons will remap a single input event to an action name.
+It is recommended to not overwrite the built-in \"ui_*\" actions in a production project."
+theme_override_fonts/font = SubResource("FontVariation_5j2x0")
+theme_override_font_sizes/font_size = 24
+action = "interact"
+
+[node name="Button" type="Button" parent="." unique_id=1673686884]
+layout_mode = 0
+offset_left = 73.0
+offset_top = 945.0
+offset_right = 457.0
+offset_bottom = 1020.0
+theme_override_fonts/font = SubResource("FontVariation_3nvhq")
+theme_override_font_sizes/font_size = 36
+text = "Back to Main Menu"
+script = ExtResource("5_sjm4j")
+
+[node name="SFXTestSound" type="AudioStreamPlayer" parent="." unique_id=1555992062]
+stream = ExtResource("5_5j2x0")
+bus = &"SFX"
+
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
