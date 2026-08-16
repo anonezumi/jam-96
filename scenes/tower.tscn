@@ -5,8 +5,7 @@
 
 [node name="Tower" type="Node2D" unique_id=282148111]
 script = ExtResource("1_ay4al")
-cooldown = 5.0
-shot_speed = 2.0
+cooldown = 2.0
 range = 500.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=475418925]

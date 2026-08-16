@@ -15,3 +15,4 @@ func _on_hit(body: Node2D) -> void:
 	var health = body.find_child("Health")
 	if health != null:
 		health.damage(damage)
+		queue_free()

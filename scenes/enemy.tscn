@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://byp70j5q16r6g"]
 
 [ext_resource type="Script" uid="uid://ccrgi2rhbjcbg" path="res://src/enemy.gd" id="1_7k104"]
-[ext_resource type="Script" uid="uid://cjsxfkikt8qv8" path="res://scenes/health.gd" id="2_md0e3"]
+[ext_resource type="Script" uid="uid://cjsxfkikt8qv8" path="res://src/health.gd" id="2_md0e3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fk20j"]
 
@@ -11,6 +11,7 @@
 collision_layer = 8
 collision_mask = 11
 script = ExtResource("1_7k104")
+speed = 100.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1383006980]
 shape = SubResource("RectangleShape2D_fk20j")

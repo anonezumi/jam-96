@@ -8,7 +8,7 @@
 
 [node name="BasicBullet" type="Node2D" unique_id=44538452]
 script = ExtResource("1_hc5j7")
-damage = 5.0
+damage = 3.0
 
 [node name="Particles" type="CPUParticles2D" parent="." unique_id=1111932792]
 amount = 50

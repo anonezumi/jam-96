@@ -22,6 +22,7 @@ buses/default_bus_layout="uid://dy420mbmkl4ax"
 [autoload]
 
 SignalBus="*uid://bqrc5joxhdsy2"
+Global="*uid://dof67kbq3gu6u"
 
 [display]
 

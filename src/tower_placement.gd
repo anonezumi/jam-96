@@ -8,6 +8,9 @@ const HEX_HEIGHT = 70.0 - SHORT_EDGE
 const SLOPE = SHORT_EDGE / HALF_WIDTH
 const VERT_OFFSET = (HEX_HEIGHT - SHORT_EDGE) / 2.0 + SHORT_EDGE
 var placeable_tiles = []
+@export var towers: Array[PackedScene]
+@export var prices: Array[int]
+var selected = 0
 
 func _ready() -> void:
 	for x in range(32):
@@ -20,10 +23,12 @@ func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT:
 		var coords = get_hex_coords(get_viewport().get_mouse_position())
 		if placeable_tiles[coords.x][coords.y]:
-			var tower_inst = preload("res://scenes/tower.tscn").instantiate()
-			$"..".add_child(tower_inst)
-			tower_inst.position = get_center_of_hex(coords)
-			placeable_tiles[coords.x][coords.y] = false
+			if Global.money >= prices[selected]:
+				var tower_inst = towers[selected].instantiate()
+				$"..".add_child(tower_inst)
+				tower_inst.position = get_center_of_hex(coords)
+				placeable_tiles[coords.x][coords.y] = false
+				Global.change_money.emit(-prices[selected])
 
 func get_center_of_hex(coords: Vector2i) -> Vector2:
 	if coords.y % 2 == 1:
