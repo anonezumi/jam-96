@@ -24,4 +24,4 @@ func _on_enemy_timer_timeout() -> void:
 	
 	enemy.position = enemy_spawn_location.position
 	
-	add_child(enemy)
+	$Enemies.add_child(enemy)

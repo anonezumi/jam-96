@@ -8,7 +8,7 @@
 
 [node name="BasicBullet" type="Node2D" unique_id=44538452]
 script = ExtResource("1_hc5j7")
-pvel_tangent_scale = 10.0
+damage = 5.0
 
 [node name="Particles" type="CPUParticles2D" parent="." unique_id=1111932792]
 amount = 50
@@ -24,6 +24,11 @@ color = Color(1, 0.80784315, 0.42745098, 1)
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1954253221]
 visible = false
+collision_layer = 0
+collision_mask = 9
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1631312564]
 shape = SubResource("CircleShape2D_i8bpo")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_hit"]

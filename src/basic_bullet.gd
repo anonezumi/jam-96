@@ -1,8 +1,6 @@
 extends Node2D
 
-@export var pvel_normal_scale = -1.0
-@export var pvel_tangent_scale = 0.5
-@export var vel_variance = 1.2
+@export var damage = 1.0
 
 var velocity: Vector2 = Vector2(0, 0)
 
@@ -12,3 +10,8 @@ func _process(delta: float) -> void:
 func set_velocity(vel: Vector2):
 	velocity = vel
 	rotation = vel.angle()
+
+func _on_hit(body: Node2D) -> void:
+	var health = body.find_child("Health")
+	if health != null:
+		health.damage(damage)

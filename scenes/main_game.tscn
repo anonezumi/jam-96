@@ -209,5 +209,7 @@ autostart = true
 [node name="TempTarget" type="Node2D" parent="." unique_id=1939586425]
 position = Vector2(934, 559)
 
+[node name="Enemies" type="Node2D" parent="." unique_id=1164210834]
+
 [connection signal="gui_input" from="InputOverlay" to="InputOverlay" method="_on_gui_input"]
 [connection signal="timeout" from="EnemyTimer" to="." method="_on_enemy_timer_timeout"]

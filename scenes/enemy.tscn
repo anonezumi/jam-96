@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://byp70j5q16r6g"]
 
 [ext_resource type="Script" uid="uid://ccrgi2rhbjcbg" path="res://src/enemy.gd" id="1_7k104"]
+[ext_resource type="Script" uid="uid://cjsxfkikt8qv8" path="res://scenes/health.gd" id="2_md0e3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fk20j"]
 
@@ -18,3 +19,6 @@ shape = SubResource("RectangleShape2D_fk20j")
 position = Vector2(-4.7683716e-07, 4.7683716e-07)
 scale = Vector2(20, 20)
 texture = SubResource("CanvasTexture_yh0t2")
+
+[node name="Health" type="Node2D" parent="." unique_id=33124042]
+script = ExtResource("2_md0e3")
