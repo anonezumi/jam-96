@@ -7,16 +7,23 @@ const SHORT_EDGE = 17.0
 const HEX_HEIGHT = 70.0 - SHORT_EDGE
 const SLOPE = SHORT_EDGE / HALF_WIDTH
 const VERT_OFFSET = (HEX_HEIGHT - SHORT_EDGE) / 2.0 + SHORT_EDGE
+var placeable_tiles = []
+
+func _ready() -> void:
+	for x in range(32):
+		placeable_tiles.append([])
+		for y in range(20):
+			var cell = $"../TileMap".get_cell_tile_data(Vector2(x, y))
+			placeable_tiles[x].append(cell.get_custom_data("placeable"))
 
 func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT:
 		var coords = get_hex_coords(get_viewport().get_mouse_position())
-		var cell = $"../TileMap".get_cell_tile_data(coords)
-		if cell.get_custom_data("placeable"):
+		if placeable_tiles[coords.x][coords.y]:
 			var tower_inst = preload("res://scenes/tower.tscn").instantiate()
 			$"..".add_child(tower_inst)
 			tower_inst.position = get_center_of_hex(coords)
-
+			placeable_tiles[coords.x][coords.y] = false
 
 func get_center_of_hex(coords: Vector2i) -> Vector2:
 	if coords.y % 2 == 1:
