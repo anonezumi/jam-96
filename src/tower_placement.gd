@@ -13,11 +13,15 @@ var placeable_tiles = []
 var selected = 0
 
 func _ready() -> void:
+	SignalBus.switch_tower.connect(switch_tower)
 	for x in range(32):
 		placeable_tiles.append([])
 		for y in range(20):
 			var cell = $"../TileMap".get_cell_tile_data(Vector2(x, y))
 			placeable_tiles[x].append(cell.get_custom_data("placeable"))
+
+func switch_tower(index):
+	selected = index
 
 func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT:

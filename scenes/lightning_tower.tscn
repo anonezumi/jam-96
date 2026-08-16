@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://cy504pci8cvhd"]
+
+[ext_resource type="Script" uid="uid://dvpqnt1oe8jxr" path="res://src/tower.gd" id="1_ay4al"]
+[ext_resource type="PackedScene" uid="uid://dnqo2lpxqn6ha" path="res://scenes/basic_bullet.tscn" id="2_ktxwe"]
+[ext_resource type="Texture2D" uid="uid://c2ey3m2ntb3do" path="res://assets/pee shoter/base.png" id="3_2jroc"]
+
+[node name="Tower" type="Node2D" unique_id=282148111]
+script = ExtResource("1_ay4al")
+cooldown = 2.0
+shot_speed = 300.0
+attack_range = 200.0
+bullet = ExtResource("2_ktxwe")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=475418925]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_2jroc")
