@@ -1,7 +1,9 @@
 [gd_scene format=4 uid="uid://bkxul1hdi7w3j"]
 
+[ext_resource type="Script" uid="uid://cbpbsgc2yveoc" path="res://src/main_game.gd" id="1_d2op2"]
 [ext_resource type="Texture2D" uid="uid://bw7vr27h3o57y" path="res://assets/placeholder/hexagonAll_sheet.png" id="1_s3esy"]
 [ext_resource type="Script" uid="uid://co5tn31yuj3gi" path="res://src/input_overlay.gd" id="2_72e8q"]
+[ext_resource type="PackedScene" uid="uid://byp70j5q16r6g" path="res://scenes/enemy.tscn" id="3_d2op2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_72e8q"]
 texture = ExtResource("1_s3esy")
@@ -171,7 +173,16 @@ custom_data_layer_0/name = "placeable"
 custom_data_layer_0/type = 1
 sources/0 = SubResource("TileSetAtlasSource_72e8q")
 
-[node name="MainGame" type="Node2D" unique_id=849674249]
+[sub_resource type="Curve2D" id="Curve2D_0rdsr"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -34, -33, 0, 0, 0, 0, 1938, -31, 0, 0, 0, 0, 1932, 1095, 0, 0, 0, 0, -52, 1103, 0, 0, 0, 0, -34, -33)
+}
+point_count = 5
+
+[node name="MainGame" type="Node2D" unique_id=849674249 node_paths=PackedStringArray("target")]
+script = ExtResource("1_d2op2")
+enemies = Array[PackedScene]([ExtResource("3_d2op2")])
+target = NodePath("TempTarget")
 
 [node name="TileMap" type="TileMapLayer" parent="." unique_id=1398426671]
 scale = Vector2(0.5, 0.5)
@@ -185,4 +196,18 @@ offset_right = 1920.0
 offset_bottom = 1080.0
 script = ExtResource("2_72e8q")
 
+[node name="EnemySpawn" type="Path2D" parent="." unique_id=85406368]
+curve = SubResource("Curve2D_0rdsr")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="EnemySpawn" unique_id=664651896]
+position = Vector2(-34, -33)
+rotation = 0.0010141984
+
+[node name="EnemyTimer" type="Timer" parent="." unique_id=1329441040]
+autostart = true
+
+[node name="TempTarget" type="Node2D" parent="." unique_id=1939586425]
+position = Vector2(934, 559)
+
 [connection signal="gui_input" from="InputOverlay" to="InputOverlay" method="_on_gui_input"]
+[connection signal="timeout" from="EnemyTimer" to="." method="_on_enemy_timer_timeout"]
