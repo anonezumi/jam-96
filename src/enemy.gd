@@ -13,7 +13,8 @@ func _ready() -> void:
 	find_path()
 
 func find_path():
-	path = tilemap.find_path(tilemap.get_hex_coords(self.global_position), target).duplicate()
+	var coords = tilemap.tile_at_position(self.global_position).coords
+	path = tilemap.find_path(coords, target).duplicate()
 	if not path:
 		stopped = true
 

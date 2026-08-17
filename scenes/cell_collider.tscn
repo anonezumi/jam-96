@@ -3,14 +3,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_i8bpo"]
 radius = 64.0
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_i8bpo"]
-
 [node name="CellCollider" type="StaticBody2D" unique_id=1614605102]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=591153953]
 shape = SubResource("CircleShape2D_i8bpo")
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1695058317]
-position = Vector2(0.5, 1.500001)
-scale = Vector2(45, 40.999996)
-texture = SubResource("CanvasTexture_i8bpo")

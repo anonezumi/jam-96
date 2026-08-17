@@ -20,7 +20,7 @@ initial_velocity_min = 20.0
 initial_velocity_max = 80.0
 scale_amount_min = 6.0
 scale_amount_max = 8.0
-color = Color(1, 0.80784315, 0.42745098, 1)
+color = Color(0.9146668, 0.36, 1, 0.8352941)
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1954253221]
 visible = false
