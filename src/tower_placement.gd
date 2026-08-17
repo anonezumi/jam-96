@@ -28,3 +28,10 @@ func _on_gui_input(event: InputEvent) -> void:
 				placeable_tiles[coords.x][coords.y] = false
 				Global.change_money.emit(-prices[selected])
 				SignalBus.tower_placed.emit(coords)
+	# elif event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_RIGHT:
+	#	var dbg_enemy = preload("res://scenes/enemy.tscn").instantiate()
+	#	dbg_enemy.dbg = true
+	#	dbg_enemy.speed = 0
+	#	dbg_enemy.find_child("Health").health = 10000000
+	#	dbg_enemy.global_position = get_viewport().get_mouse_position()
+	#	$"../Enemies".add_child(dbg_enemy)

@@ -10,6 +10,7 @@ var walkable_tiles = []
 var astar = AStar2D.new()
 
 func _ready() -> void:
+	SignalBus.tower_placed.connect(_on_tower_placed)
 	for x in range(35):
 		walkable_tiles.append([])
 		for y in range(24):
@@ -17,13 +18,22 @@ func _ready() -> void:
 			walkable_tiles[x].append(walkable)
 			if walkable:
 				astar.add_point(coords_to_id(x, y), get_center_of_hex(Vector2i(x, y)))
-				for id in [coords_to_id(x-1, y-1), coords_to_id(x, y-1), coords_to_id(x-1, y)]:
-					if astar.has_point(id):
-						astar.connect_points(id, coords_to_id(x, y))
+				if y % 2 == 0:
+					for id in [coords_to_id(x-1, y-1), coords_to_id(x, y-1), coords_to_id(x-1, y)]:
+						if astar.has_point(id):
+							astar.connect_points(id, coords_to_id(x, y))
+				else:
+					for id in [coords_to_id(x+1, y-1), coords_to_id(x, y-1), coords_to_id(x-1, y)]:
+						if astar.has_point(id):
+							astar.connect_points(id, coords_to_id(x, y))
 			else:
 				var collider = preload("res://scenes/cell_collider.tscn").instantiate()
 				add_child(collider)
 				collider.global_position = get_center_of_hex(Vector2i(x, y))
+
+func _on_tower_placed(coords: Vector2i):
+	astar.remove_point(coords_to_id(coords.x, coords.y))
+	SignalBus.pathfind_recalculate.emit()
 
 func find_path(from_coords: Vector2i, to_coords: Vector2i) -> PackedVector2Array:
 	return astar.get_point_path(
