@@ -3,6 +3,9 @@
 [ext_resource type="Script" uid="uid://dvpqnt1oe8jxr" path="res://src/tower.gd" id="1_8r7mm"]
 [ext_resource type="PackedScene" uid="uid://dnqo2lpxqn6ha" path="res://scenes/basic_bullet.tscn" id="2_y83am"]
 [ext_resource type="Texture2D" uid="uid://b3a0rj75g5ljt" path="res://assets/icon.svg" id="3_6ahen"]
+[ext_resource type="PackedScene" uid="uid://cvklflibus2q1" path="res://scenes/cell_collider.tscn" id="4_y83am"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_i8bpo"]
 
 [node name="Tower" type="Node2D" unique_id=282148111]
 script = ExtResource("1_8r7mm")
@@ -10,7 +13,16 @@ cooldown = 2.0
 shot_speed = 300.0
 attack_range = 200.0
 bullet = ExtResource("2_y83am")
+bullet_poss = ExtResource("2_y83am")
+tower_type = 1
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=475418925]
+[node name="Base" type="Sprite2D" parent="." unique_id=475418925]
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("3_6ahen")
+
+[node name="CellCollider" parent="." unique_id=1614605102 instance=ExtResource("4_y83am")]
+
+[node name="PossessedEffect" type="Sprite2D" parent="." unique_id=1676856477]
+visible = false
+scale = Vector2(20, 20)
+texture = SubResource("PlaceholderTexture2D_i8bpo")
