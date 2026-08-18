@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://co7yh3olbuca6"]
 
 [ext_resource type="Script" uid="uid://dvpqnt1oe8jxr" path="res://src/tower.gd" id="1_8r7mm"]
+[ext_resource type="PackedScene" uid="uid://ddsrwgt38poog" path="res://scenes/wave.tscn" id="2_6ahen"]
 [ext_resource type="PackedScene" uid="uid://dnqo2lpxqn6ha" path="res://scenes/basic_bullet.tscn" id="2_y83am"]
-[ext_resource type="Texture2D" uid="uid://b3a0rj75g5ljt" path="res://assets/icon.svg" id="3_6ahen"]
+[ext_resource type="Texture2D" uid="uid://cohovs152brii" path="res://assets/wave machine/wave machine.png" id="3_y83am"]
 [ext_resource type="PackedScene" uid="uid://cvklflibus2q1" path="res://scenes/cell_collider.tscn" id="4_y83am"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_i8bpo"]
@@ -10,17 +11,20 @@
 [node name="Tower" type="Node2D" unique_id=282148111]
 script = ExtResource("1_8r7mm")
 cooldown = 2.0
-shot_speed = 300.0
-attack_range = 200.0
-bullet = ExtResource("2_y83am")
+shot_speed = 0.0
+attack_range = 125.0
+shot_speed_poss = 800.0
+bullet = ExtResource("2_6ahen")
 bullet_poss = ExtResource("2_y83am")
 tower_type = 1
 
 [node name="Base" type="Sprite2D" parent="." unique_id=475418925]
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("3_6ahen")
+position = Vector2(0, -10)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("3_y83am")
 
 [node name="CellCollider" parent="." unique_id=1614605102 instance=ExtResource("4_y83am")]
+scale = Vector2(0.5, 0.5)
 
 [node name="PossessedEffect" type="Sprite2D" parent="." unique_id=1676856477]
 visible = false

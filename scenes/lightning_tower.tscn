@@ -19,11 +19,11 @@ bullet = ExtResource("2_ktxwe")
 bullet_poss = ExtResource("2_ktxwe")
 
 [node name="Base" type="Sprite2D" parent="." unique_id=475418925]
-scale = Vector2(0.1, 0.1)
+scale = Vector2(0.15, 0.15)
 texture = ExtResource("3_2jroc")
 
 [node name="Head" type="Sprite2D" parent="." unique_id=1130363819]
-scale = Vector2(0.1, 0.1)
+scale = Vector2(0.15, 0.15)
 texture = ExtResource("4_axhgv")
 
 [node name="CellCollider" parent="." unique_id=1614605102 instance=ExtResource("5_kdfxu")]

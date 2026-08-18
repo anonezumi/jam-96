@@ -40,12 +40,13 @@ func _process(delta: float) -> void:
 		else:
 			var target = get_target()
 			if target != self: # target is self if none in range
-				point_head(target.position)
 				time_since_fire += cooldown
 				var bullet_inst = bullet.instantiate()
 				add_child(bullet_inst)
-				var vel = position.direction_to(target.position) * shot_speed
-				bullet_inst.set_velocity(vel)
+				if tower_type == TowerType.LIGHTNING:
+					point_head(target.position)
+					var vel = position.direction_to(target.position) * shot_speed
+					bullet_inst.set_velocity(vel)
 
 func point_head(target: Vector2):
 	var angle = position.angle_to_point(target)

@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://ddsrwgt38poog"]
+
+[ext_resource type="Script" uid="uid://cd6alk2424fgt" path="res://src/wave.gd" id="1_y5ysc"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_kewi4"]
+
+[sub_resource type="Curve" id="Curve_y5ysc"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i8bpo"]
+radius = 24.020824
+
+[node name="BasicBullet" type="Node2D" unique_id=44538452]
+script = ExtResource("1_y5ysc")
+scale_factor = 2.5
+
+[node name="Particles" type="CPUParticles2D" parent="." unique_id=1111932792]
+amount = 500
+texture = SubResource("CanvasTexture_kewi4")
+lifetime = 0.16
+emission_shape = 6
+emission_ring_inner_radius = 20.0
+emission_ring_radius = 25.0
+spread = 60.0
+gravity = Vector2(0, 0)
+angle_max = 360.0
+scale_amount_min = 2.0
+scale_amount_max = 3.0
+color = Color(0.14524597, 0.6795122, 0.99999994, 0.8352941)
+hue_variation_min = -0.02
+hue_variation_max = 0.02
+hue_variation_curve = SubResource("Curve_y5ysc")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1954253221]
+collision_layer = 0
+collision_mask = 9
+input_pickable = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1631312564]
+shape = SubResource("CircleShape2D_i8bpo")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_hit"]
