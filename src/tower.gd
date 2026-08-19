@@ -50,8 +50,9 @@ func _process(delta: float) -> void:
 					var vel = position.direction_to(target.position) * shot_speed
 					bullet_inst.set_velocity(vel)
 				if tower_type == TowerType.BOMB:
-					print("bomb")
 					bullet_inst.set_target(target.position, shot_speed)
+			else:
+				time_to_fire = 0
 
 func point_head(target: Vector2):
 	var angle = position.angle_to_point(target)

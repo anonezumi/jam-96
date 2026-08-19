@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://dvhfie6wde473"]
 
-[ext_resource type="Script" uid="uid://bo0es4pemxy5d" path="res://src/bomb.gd" id="1_573fp"]
+[ext_resource type="Script" uid="uid://bo0es4pemxy5d" path="res://src/bomb.gd" id="1_4kkau"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_i8bpo"]
 
 [node name="Bomb" type="Node2D" unique_id=575524703]
-script = ExtResource("1_573fp")
+script = ExtResource("1_4kkau")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=134421524]
 scale = Vector2(20, 20)
