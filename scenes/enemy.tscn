@@ -1,26 +1,26 @@
 [gd_scene format=3 uid="uid://byp70j5q16r6g"]
 
 [ext_resource type="Script" uid="uid://ccrgi2rhbjcbg" path="res://src/enemy.gd" id="1_7k104"]
+[ext_resource type="Texture2D" uid="uid://bk63ccfbfgdv3" path="res://assets/cars/blue/1.png" id="2_4ra3w"]
 [ext_resource type="Script" uid="uid://cjsxfkikt8qv8" path="res://src/health.gd" id="2_md0e3"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fk20j"]
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_yh0t2"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_tdtm6"]
 
 [node name="Enemy" type="CharacterBody2D" unique_id=207537454]
 collision_layer = 8
 collision_mask = 11
+motion_mode = 1
 script = ExtResource("1_7k104")
 target = Vector2i(17, 12)
-speed = 100.0
+speed = 50.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1383006980]
-shape = SubResource("RectangleShape2D_fk20j")
+shape = SubResource("CircleShape2D_tdtm6")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1542668713]
-position = Vector2(-4.7683716e-07, 4.7683716e-07)
-scale = Vector2(20, 20)
-texture = SubResource("CanvasTexture_yh0t2")
+position = Vector2(-0.99999994, -8)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_4ra3w")
 
 [node name="Health" type="Node2D" parent="." unique_id=33124042]
 script = ExtResource("2_md0e3")

@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://4p4pgiwrcpb0"]
+
+[ext_resource type="Script" uid="uid://dvpqnt1oe8jxr" path="res://src/tower.gd" id="1_6jjtf"]
+[ext_resource type="PackedScene" uid="uid://dvhfie6wde473" path="res://bomb.tscn" id="2_6jjtf"]
+[ext_resource type="Texture2D" uid="uid://c2ey3m2ntb3do" path="res://assets/pee shoter/base.png" id="3_vtwfl"]
+[ext_resource type="Texture2D" uid="uid://gg6t0eaeqic6" path="res://assets/pee shoter/down.png" id="4_5gmul"]
+[ext_resource type="PackedScene" uid="uid://cvklflibus2q1" path="res://scenes/cell_collider.tscn" id="5_2a0ex"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_i8bpo"]
+
+[node name="Tower" type="Node2D" unique_id=282148111]
+script = ExtResource("1_6jjtf")
+cooldown = 2.0
+shot_speed = 300.0
+attack_range = 200.0
+cooldown_poss = 0.25
+shot_speed_poss = 800.0
+bullet = ExtResource("2_6jjtf")
+bullet_poss = ExtResource("2_6jjtf")
+tower_type = 2
+
+[node name="Base" type="Sprite2D" parent="." unique_id=475418925]
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("3_vtwfl")
+
+[node name="Head" type="Sprite2D" parent="." unique_id=1130363819]
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("4_5gmul")
+
+[node name="CellCollider" parent="." unique_id=1614605102 instance=ExtResource("5_2a0ex")]
+scale = Vector2(0.5, 0.5)
+
+[node name="PossessedEffect" type="Sprite2D" parent="." unique_id=195189673]
+visible = false
+scale = Vector2(20, 20)
+texture = SubResource("PlaceholderTexture2D_i8bpo")

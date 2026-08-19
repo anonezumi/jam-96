@@ -8,12 +8,14 @@ extends Node2D
 @export var bullet: PackedScene
 @export var bullet_poss: PackedScene
 @export var tower_type: TowerType
-var time_since_fire = cooldown
+var time_to_fire = cooldown
 var possessed = false
 
 enum TowerType {
 	LIGHTNING,
-	WAVE
+	WAVE,
+	BOMB,
+	BUFF
 }
 
 func _ready():
@@ -22,17 +24,17 @@ func _ready():
 func on_change_possessed(tower: Node2D):
 	self.possessed = tower == self
 	self.find_child("PossessedEffect").visible = self.possessed
-	if self.possessed and (time_since_fire > cooldown_poss):
-		time_since_fire = cooldown_poss
+	if self.possessed and (time_to_fire > cooldown_poss):
+		time_to_fire = cooldown_poss
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	time_since_fire -= delta
+	time_to_fire -= delta
 	if possessed and tower_type == TowerType.LIGHTNING:
 		point_head(get_viewport().get_mouse_position())
-	if time_since_fire <= 0:
+	if time_to_fire <= 0:
 		if possessed:
-			time_since_fire += cooldown_poss
+			time_to_fire += cooldown_poss
 			var bullet_inst = bullet_poss.instantiate()
 			add_child(bullet_inst)
 			var vel = position.direction_to(get_viewport().get_mouse_position()) * shot_speed_poss
@@ -40,13 +42,16 @@ func _process(delta: float) -> void:
 		else:
 			var target = get_target()
 			if target != self: # target is self if none in range
-				time_since_fire += cooldown
+				time_to_fire += cooldown
 				var bullet_inst = bullet.instantiate()
 				add_child(bullet_inst)
 				if tower_type == TowerType.LIGHTNING:
 					point_head(target.position)
 					var vel = position.direction_to(target.position) * shot_speed
 					bullet_inst.set_velocity(vel)
+				if tower_type == TowerType.BOMB:
+					print("bomb")
+					bullet_inst.set_target(target.position, shot_speed)
 
 func point_head(target: Vector2):
 	var angle = position.angle_to_point(target)

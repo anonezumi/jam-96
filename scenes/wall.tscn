@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://psqmo5ecwri4"]
+
+[ext_resource type="PackedScene" uid="uid://cvklflibus2q1" path="res://scenes/cell_collider.tscn" id="1_2ktk7"]
+[ext_resource type="Texture2D" uid="uid://b3a0rj75g5ljt" path="res://assets/icon.svg" id="2_e00m8"]
+
+[node name="Wall" type="Node2D" unique_id=1017916388]
+scale = Vector2(0.5, 0.5)
+
+[node name="CellCollider" parent="." unique_id=1614605102 instance=ExtResource("1_2ktk7")]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=836494197]
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("2_e00m8")

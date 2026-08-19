@@ -5,9 +5,6 @@ extends Node2D
 @export var max_size: float = 6
 @onready var particles = $Particles
 
-func _ready() -> void:
-	pass
-
 func _process(delta: float) -> void:
 	if scale.x > max_size:
 		queue_free()
