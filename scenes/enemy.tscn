@@ -11,7 +11,7 @@ collision_layer = 8
 collision_mask = 11
 motion_mode = 1
 script = ExtResource("1_7k104")
-target = Vector2i(17, 12)
+target = Vector2i(8, 5)
 speed = 50.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1383006980]

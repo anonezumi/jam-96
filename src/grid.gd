@@ -1,11 +1,20 @@
 extends TileMapLayer
 
-const HEX_WIDTH = 60.0
+const HEX_WIDTH = 120.0
 const HALF_WIDTH = HEX_WIDTH / 2.0
-const SHORT_EDGE = 17.0
-const HEX_HEIGHT = 70.0 - SHORT_EDGE
+const SHORT_EDGE = 34
+const HEX_HEIGHT = 140.0 - SHORT_EDGE
 const SLOPE = SHORT_EDGE / HALF_WIDTH
-const VERT_OFFSET = 20
+const VERT_OFFSET = 64
+const LENGTH = HEX_HEIGHT - SHORT_EDGE
+const HEX_OFFSETS: PackedVector2Array = [
+	Vector2(0, LENGTH),
+	Vector2(HALF_WIDTH, LENGTH/2.0),
+	Vector2(HALF_WIDTH, -LENGTH/2.0),
+	Vector2(0, -LENGTH),
+	Vector2(-HALF_WIDTH, -LENGTH/2.0),
+	Vector2(-HALF_WIDTH, LENGTH/2.0)
+]
 var tiles = []
 var astar = AStar2D.new()
 
@@ -35,11 +44,10 @@ func init_tile(x: int, y: int) -> Tile:
 					   y * HEX_HEIGHT + VERT_OFFSET) + position
 	return tile
 
-
 func _ready() -> void:
-	for x in range(35):
+	for x in range(18):
 		tiles.append([])
-		for y in range(24):
+		for y in range(12):
 			var tile = init_tile(x, y)
 			tiles[x].append(tile)
 			if tile.walkable:
@@ -56,6 +64,7 @@ func _ready() -> void:
 				var collider = preload("res://scenes/cell_collider.tscn").instantiate()
 				add_child(collider)
 				collider.global_position = tile.center
+
 
 func _process(_delta: float) -> void:
 	# optimize this somehow
@@ -119,4 +128,6 @@ func tile_at_position(pos: Vector2) -> Tile: # shameless hex grid code from stac
 			if row % 2 == 0:
 				column += 1
 		
-		return tiles[column][row]
+		if len(tiles) > column and len(tiles[0]) > row:
+			return tiles[column][row]
+		return null
