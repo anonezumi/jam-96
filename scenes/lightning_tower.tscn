@@ -17,13 +17,14 @@ cooldown_poss = 0.25
 shot_speed_poss = 800.0
 bullet = ExtResource("2_ktxwe")
 bullet_poss = ExtResource("2_ktxwe")
+offset = Vector2(0, -64)
 
 [node name="Base" type="Sprite2D" parent="." unique_id=475418925]
-scale = Vector2(0.15, 0.15)
+scale = Vector2(0.3, 0.3)
 texture = ExtResource("3_2jroc")
 
 [node name="Head" type="Sprite2D" parent="." unique_id=1130363819]
-scale = Vector2(0.15, 0.15)
+scale = Vector2(0.3, 0.3)
 texture = ExtResource("4_axhgv")
 
 [node name="CellCollider" parent="." unique_id=1614605102 instance=ExtResource("5_kdfxu")]

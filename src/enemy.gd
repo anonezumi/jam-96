@@ -7,21 +7,24 @@ var path: PackedVector2Array
 var stopped = false
 const TOLERANCE = 5
 var dbg = false
+var my_tile
 
 func _ready() -> void:
 	SignalBus.pathfind_recalculate.connect(find_path)
 	find_path()
 
 func find_path():
-	var coords = tilemap.tile_at_position(self.global_position).coords
-	path = tilemap.find_path(coords, target).duplicate()
+	my_tile = tilemap.tile_at_position(global_position)
+	path = tilemap.find_path(my_tile.coords, target).duplicate()
 	if not path:
 		stopped = true
+		print("no path sad")
 
 func _physics_process(delta: float) -> void:
 	if stopped or dbg:
 		return
-	if global_position.distance_to(path[0]) <= TOLERANCE:
+	my_tile = tilemap.tile_at_position(global_position)
+	if my_tile.center == path[0]:
 		path.remove_at(0)
 		if not path:
 			stopped = true

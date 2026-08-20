@@ -53,18 +53,17 @@ func _ready() -> void:
 			if tile.walkable:
 				astar.add_point(tile.id, tile.center)
 				if y % 2 == 0:
-					for id in [coords_to_id(x-1, y-1), coords_to_id(x, y-1), coords_to_id(x-1, y)]:
+					for id in [coords_to_id(x-1, y-1), coords_to_id(x, y-1), coords_to_id(x-1, y), coords_to_id(x-1, y+1)]:
 						if astar.has_point(id):
 							astar.connect_points(id, tile.id)
 				else:
-					for id in [coords_to_id(x+1, y-1), coords_to_id(x, y-1), coords_to_id(x-1, y)]:
+					for id in [coords_to_id(x, y-1), coords_to_id(x-1, y)]:
 						if astar.has_point(id):
 							astar.connect_points(id, tile.id)
 			else:
 				var collider = preload("res://scenes/cell_collider.tscn").instantiate()
 				add_child(collider)
 				collider.global_position = tile.center
-
 
 func _process(_delta: float) -> void:
 	# optimize this somehow
@@ -87,7 +86,7 @@ func place_tower(tower: PackedScene, price: int):
 	if Global.money < price: return
 	var tower_inst = tower.instantiate()
 	$"..".add_child(tower_inst)
-	tower_inst.position = tile.center
+	tower_inst.position = tile.center + tower_inst.offset
 	tile.placeable = false
 	tile.tower = tower_inst
 	Global.change_money.emit(-price)

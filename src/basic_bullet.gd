@@ -4,9 +4,20 @@ extends Node2D
 @export var lifetime = 5.0
 
 var velocity: Vector2 = Vector2(0, 0)
+var timeout = false
+var time_to_free = 0.5
 
 func _process(delta: float) -> void:
-	position += velocity * delta
+	if timeout:
+		time_to_free -= delta
+		if time_to_free <= 0:
+			queue_free()
+	else:
+		position += velocity * delta
+		lifetime -= delta
+		if lifetime <= 0:
+			timeout = true
+			$Particles.emitting = false
 
 func set_velocity(vel: Vector2):
 	velocity = vel
@@ -14,6 +25,7 @@ func set_velocity(vel: Vector2):
 
 func _on_hit(body: Node2D) -> void:
 	var health = body.find_child("Health")
-	if health != null:
+	if health != null and not timeout:
 		health.damage(damage)
-		queue_free()
+		timeout = true
+		$Particles.emitting = false

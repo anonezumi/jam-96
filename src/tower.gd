@@ -8,6 +8,7 @@ extends Node2D
 @export var bullet: PackedScene
 @export var bullet_poss: PackedScene
 @export var tower_type: TowerType
+@export var offset: Vector2
 var time_to_fire = cooldown
 var possessed = false
 
@@ -37,8 +38,9 @@ func _process(delta: float) -> void:
 			time_to_fire += cooldown_poss
 			var bullet_inst = bullet_poss.instantiate()
 			add_child(bullet_inst)
-			var vel = position.direction_to(get_viewport().get_mouse_position()) * shot_speed_poss
-			bullet_inst.set_velocity(vel)
+			var direction = position.direction_to(get_viewport().get_mouse_position())
+			bullet_inst.position = direction * 30 # FIXME
+			bullet_inst.set_velocity(direction * shot_speed_poss)
 		else:
 			var target = get_target()
 			if target != self: # target is self if none in range
@@ -47,8 +49,9 @@ func _process(delta: float) -> void:
 				add_child(bullet_inst)
 				if tower_type == TowerType.LIGHTNING:
 					point_head(target.position)
-					var vel = position.direction_to(target.position) * shot_speed
-					bullet_inst.set_velocity(vel)
+					var direction = position.direction_to(target.position)
+					bullet_inst.position = direction * 96 # FIXME
+					bullet_inst.set_velocity(direction * shot_speed)
 				if tower_type == TowerType.BOMB:
 					bullet_inst.set_target(target.position, shot_speed)
 			else:
@@ -81,6 +84,7 @@ func point_head(target: Vector2):
 		head.scale.x = -abs(head.scale.x)
 	else:
 		head.scale.x = abs(head.scale.x)
+	head.rotation = -(PI/6) + angle - (ind*PI)/3.0
 
 func get_target() -> Node2D: # returns self if no target found
 	var closest_enemy
