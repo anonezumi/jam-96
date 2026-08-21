@@ -4,6 +4,7 @@ extends Control
 @export var prices: Array[int]
 @onready var tilemap = $"../TileMap"
 var selected = 0
+var hovered_tile
 
 func _ready() -> void:
 	SignalBus.switch_tower.connect(switch_tower)
@@ -13,12 +14,15 @@ func _process(_delta: float) -> void:
 
 func _draw():
 	var hex = tilemap.HEX_OFFSETS.duplicate()
-	var tile = tilemap.tile_at_position(get_viewport().get_mouse_position())
-	if tile == null:
+	hovered_tile = tilemap.tile_at_position(get_viewport().get_mouse_position())
+	if hovered_tile == null:
 		return
 	for i in range(6):
-		hex[i] += tile.center
+		hex[i] += hovered_tile.center
 	draw_colored_polygon(hex, Color.from_rgba8(192, 192, 192, 32))
+	if hovered_tile.tower == null:
+		return
+	draw_circle(hovered_tile.center, hovered_tile.tower.attack_range, Color.from_rgba8(64, 64, 64, 64))
 
 func switch_tower(index):
 	selected = index

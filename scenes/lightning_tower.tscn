@@ -11,8 +11,8 @@
 [node name="Tower" type="Node2D" unique_id=282148111]
 script = ExtResource("1_ay4al")
 cooldown = 2.0
-shot_speed = 300.0
-attack_range = 200.0
+shot_speed = 500.0
+attack_range = 400.0
 cooldown_poss = 0.25
 shot_speed_poss = 800.0
 bullet = ExtResource("2_ktxwe")
@@ -28,6 +28,7 @@ scale = Vector2(0.3, 0.3)
 texture = ExtResource("4_axhgv")
 
 [node name="CellCollider" parent="." unique_id=1614605102 instance=ExtResource("5_kdfxu")]
+position = Vector2(0, 62)
 scale = Vector2(0.5, 0.5)
 
 [node name="PossessedEffect" type="Sprite2D" parent="." unique_id=195189673]
