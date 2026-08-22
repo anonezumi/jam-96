@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dvpqnt1oe8jxr" path="res://src/tower.gd" id="1_ay4al"]
 [ext_resource type="PackedScene" uid="uid://dnqo2lpxqn6ha" path="res://scenes/basic_bullet.tscn" id="2_ktxwe"]
 [ext_resource type="Texture2D" uid="uid://c2ey3m2ntb3do" path="res://assets/pee shoter/base.png" id="3_2jroc"]
+[ext_resource type="PackedScene" uid="uid://bj0ejk36bjdmv" path="res://scenes/big_bullet.tscn" id="3_cv1h2"]
 [ext_resource type="Texture2D" uid="uid://gg6t0eaeqic6" path="res://assets/pee shoter/down.png" id="4_axhgv"]
 [ext_resource type="PackedScene" uid="uid://cvklflibus2q1" path="res://scenes/cell_collider.tscn" id="5_kdfxu"]
 
@@ -15,8 +16,10 @@ shot_speed = 500.0
 attack_range = 400.0
 cooldown_poss = 0.25
 shot_speed_poss = 800.0
+shot_speed_special = 200.0
 bullet = ExtResource("2_ktxwe")
 bullet_poss = ExtResource("2_ktxwe")
+bullet_special = ExtResource("3_cv1h2")
 offset = Vector2(0, -64)
 
 [node name="Base" type="Sprite2D" parent="." unique_id=475418925]

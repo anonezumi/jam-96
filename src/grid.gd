@@ -17,6 +17,7 @@ const HEX_OFFSETS: PackedVector2Array = [
 ]
 var tiles = []
 var astar = AStar2D.new()
+var possessed_tower = null
 
 class Tile:
 	var coords: Vector2i = Vector2i(-1, -1)
@@ -26,6 +27,7 @@ class Tile:
 	var tower = null
 	var id: int = -1
 	var center: Vector2 = Vector2(-1, -1)
+	var buff_strength: float = 1.0
 
 func coords_to_id(x: int, y: int):
 	return (x << 8) + y
@@ -81,6 +83,7 @@ func place_tower(tower: PackedScene, price: int):
 		if tile.tower == null:
 			return
 		SignalBus.change_possessed.emit(tile.tower)
+		possessed_tower = tile.tower
 		return
 	if tile.has_enemy: return
 	if Global.money < price: return

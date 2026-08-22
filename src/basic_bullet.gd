@@ -2,6 +2,7 @@ extends Node2D
 
 @export var damage = 1.0
 @export var lifetime = 5.0
+@export var pierce = 1
 
 var velocity: Vector2 = Vector2(0, 0)
 var timeout = false
@@ -27,5 +28,7 @@ func _on_hit(body: Node2D) -> void:
 	var health = body.find_child("Health")
 	if health != null and not timeout:
 		health.damage(damage)
-		timeout = true
-		$Particles.emitting = false
+		pierce -= 1
+		if pierce <= 0:
+			timeout = true
+			$Particles.emitting = false

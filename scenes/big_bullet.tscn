@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://bj0ejk36bjdmv"]
+
+[ext_resource type="Script" uid="uid://diaa3mm56cfx2" path="res://src/basic_bullet.gd" id="1_5jjrc"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_kewi4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i8bpo"]
+radius = 60.0
+
+[node name="BasicBullet" type="Node2D" unique_id=44538452]
+script = ExtResource("1_5jjrc")
+damage = 10.0
+pierce = 100
+
+[node name="Particles" type="CPUParticles2D" parent="." unique_id=1111932792]
+amount = 200
+texture = SubResource("CanvasTexture_kewi4")
+lifetime = 0.15000000000000002
+emission_shape = 6
+emission_ring_inner_radius = 50.0
+emission_ring_radius = 60.0
+spread = 60.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 80.0
+scale_amount_min = 6.0
+scale_amount_max = 8.0
+color = Color(0.9146668, 0.36, 1, 0.8352941)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1954253221]
+collision_layer = 0
+collision_mask = 9
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1631312564]
+shape = SubResource("CircleShape2D_i8bpo")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_hit"]

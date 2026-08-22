@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dvpqnt1oe8jxr" path="res://src/tower.gd" id="1_6jjtf"]
 [ext_resource type="PackedScene" uid="uid://dvhfie6wde473" path="res://scenes/bomb.tscn" id="2_6jjtf"]
+[ext_resource type="PackedScene" uid="uid://by7liq7luh3ph" path="res://scenes/shell.tscn" id="3_2nt8w"]
 [ext_resource type="Texture2D" uid="uid://c2ey3m2ntb3do" path="res://assets/pee shoter/base.png" id="3_vtwfl"]
 [ext_resource type="Texture2D" uid="uid://gg6t0eaeqic6" path="res://assets/pee shoter/down.png" id="4_5gmul"]
 [ext_resource type="PackedScene" uid="uid://cvklflibus2q1" path="res://scenes/cell_collider.tscn" id="5_2a0ex"]
@@ -13,10 +14,11 @@ script = ExtResource("1_6jjtf")
 cooldown = 2.0
 shot_speed = 300.0
 attack_range = 300.0
-cooldown_poss = 0.25
+cooldown_poss = 1.0
 shot_speed_poss = 800.0
 bullet = ExtResource("2_6jjtf")
-bullet_poss = ExtResource("2_6jjtf")
+bullet_poss = ExtResource("3_2nt8w")
+bullet_special = ExtResource("3_2nt8w")
 tower_type = 2
 
 [node name="Base" type="Sprite2D" parent="." unique_id=475418925]

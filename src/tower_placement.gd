@@ -5,11 +5,14 @@ extends Control
 @onready var tilemap = $"../TileMap"
 var selected = 0
 var hovered_tile
+var special_cooldown = 10.0
+var time_to_special = 0.0
 
 func _ready() -> void:
 	SignalBus.switch_tower.connect(switch_tower)
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
+	time_to_special -= delta
 	queue_redraw()
 
 func _draw():
@@ -28,5 +31,11 @@ func switch_tower(index):
 	selected = index
 
 func _on_gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT and event.is_pressed():
-		tilemap.place_tower(towers[selected], prices[selected])
+	if event is InputEventMouseButton and event.is_pressed():
+		if event.button_index == MouseButton.MOUSE_BUTTON_LEFT:
+			tilemap.place_tower(towers[selected], prices[selected])
+		elif (event.button_index == MouseButton.MOUSE_BUTTON_RIGHT
+			  and tilemap.possessed_tower != null
+			  and time_to_special <= 0):
+			tilemap.possessed_tower.shoot_special()
+			time_to_special = special_cooldown

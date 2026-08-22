@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://by7liq7luh3ph"]
+
+[ext_resource type="Script" uid="uid://cjbwgdnyfwmi7" path="res://scenes/shell.gd" id="1_sb42f"]
+[ext_resource type="Texture2D" uid="uid://b3qli0oo6k2du" path="res://assets/target.png" id="2_6fq18"]
+[ext_resource type="Texture2D" uid="uid://b3a0rj75g5ljt" path="res://assets/icon.svg" id="3_6fq18"]
+
+[node name="Shell" type="Node2D" unique_id=1746576151]
+script = ExtResource("1_sb42f")
+spin_speed = 0.2
+
+[node name="Target" type="Sprite2D" parent="." unique_id=2090802344]
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("2_6fq18")
+
+[node name="Shell" type="Sprite2D" parent="." unique_id=792653375]
+position = Vector2(0, -1000)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_6fq18")

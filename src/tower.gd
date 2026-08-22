@@ -5,8 +5,10 @@ extends Node2D
 @export var attack_range: float = 150.0
 @export var cooldown_poss: float = 0.2
 @export var shot_speed_poss: float = 10.0
+@export var shot_speed_special: float = 10.0
 @export var bullet: PackedScene
 @export var bullet_poss: PackedScene
+@export var bullet_special: PackedScene
 @export var tower_type: TowerType
 @export var offset: Vector2
 var time_to_fire = cooldown
@@ -15,8 +17,7 @@ var possessed = false
 enum TowerType {
 	LIGHTNING,
 	WAVE,
-	BOMB,
-	BUFF
+	BOMB
 }
 
 func _ready():
@@ -38,9 +39,12 @@ func _process(delta: float) -> void:
 			time_to_fire += cooldown_poss
 			var bullet_inst = bullet_poss.instantiate()
 			add_child(bullet_inst)
-			var direction = position.direction_to(get_viewport().get_mouse_position())
-			bullet_inst.position = direction * 30 # FIXME
-			bullet_inst.set_velocity(direction * shot_speed_poss)
+			if tower_type == TowerType.LIGHTNING:
+				var direction = position.direction_to(get_viewport().get_mouse_position())
+				bullet_inst.position = direction * 30 # FIXME
+				bullet_inst.set_velocity(direction * shot_speed_poss)
+			elif tower_type == TowerType.BOMB:
+				bullet_inst.global_position = get_viewport().get_mouse_position()
 		else:
 			var target = get_target()
 			if target != self: # target is self if none in range
@@ -98,3 +102,13 @@ func get_target() -> Node2D: # returns self if no target found
 		return closest_enemy
 	else:
 		return self
+
+func shoot_special():
+	var bullet_inst = bullet_special.instantiate()
+	add_child(bullet_inst)
+	if tower_type == TowerType.LIGHTNING:
+		var direction = position.direction_to(get_viewport().get_mouse_position())
+		bullet_inst.position = direction * 30 # FIXME
+		bullet_inst.set_velocity(direction * shot_speed_special)
+	elif tower_type == TowerType.BOMB:
+		bullet_inst.global_position = get_viewport().get_mouse_position()
